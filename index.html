@@ -242,18 +242,14 @@
 <!-- ============================ TAB 1 ============================ -->
 <div class="tab vis" id="tab0">
   <div class="xray">
-    <div class="eyebrow">Raio-x de 30 segundos · @lnrcomunicacao · 18 mai–16 jun 2026</div>
+    <div class="eyebrow" id="xrayEyebrow">Raio-x de 30 segundos · @lnrcomunicacao · carregando…</div>
     <h1>Onde a LNR está, o que travar primeiro e o que fazer <b>esta semana</b>.</h1>
-    <div class="diag-grid">
-      <div class="diag sit"><div class="lab"><span class="ic">📍</span> Situação</div>
-        <p>Conta nova: <b>5 seguidores</b>, 13 posts. O motor de descoberta <b>já funciona</b> — um Reel alcançou 105 contas (≥95% não te seguiam). A base é pequena, mas o conteúdo tem tração.</p></div>
-      <div class="diag prob"><div class="lab"><span class="ic">⚠️</span> Problema nº 1</div>
-        <p><b>Constância e conversa.</b> Foram <b>6 dias zerados</b> no mês, e o alcance quase não vira interação: só <b>3 comentários</b> e <b>4 salvamentos</b> em 30 dias — justo os sinais que o algoritmo mais premia.</p></div>
-      <div class="diag opp"><div class="lab"><span class="ic">🚀</span> Oportunidade nº 1</div>
-        <p>Repetir a <b>fórmula de 15/06</b>: Reel de caso real de cliente + CTA. Foi seu melhor post em engajamento — e é exatamente o que o mercado recompensa num nicho cheio de teoria.</p></div>
+    <div class="diag-grid" id="diagGrid">
+      <div class="diag sit"><div class="lab"><span class="ic">📍</span> Situação</div><p>Carregando…</p></div>
+      <div class="diag prob"><div class="lab"><span class="ic">⚠️</span> Problema nº 1</div><p>Carregando…</p></div>
+      <div class="diag opp"><div class="lab"><span class="ic">🚀</span> Oportunidade nº 1</div><p>Carregando…</p></div>
     </div>
-    <div class="doweek"><span class="badge-do">Faça esta semana</span>
-      <p><b>3 Reels</b>, sendo 1 demonstração do agente do Rubens funcionando, com gancho de dor nos 3 primeiros segundos e CTA de comentário ("comenta AGENTE"). Veja os roteiros prontos na aba <b>O que replicar</b>.</p></div>
+    <div class="doweek" id="doweek"><span class="badge-do">Faça esta semana</span><p>Carregando…</p></div>
   </div>
 
   <section>
@@ -339,8 +335,8 @@
 <footer>
   <div class="foot-card">
     <div class="ft-txt"><h3>Atualização automática</h3>
-      <p>Modo atual: <b style="color:var(--muted2)">dados embutidos</b> (snapshot 18 mai–16 jun). Para atualização diária/semanal, troque <code>CONFIG.mode</code> para <code>'live'</code> e aponte <code>CONFIG.endpoint</code> para sua função Vercel. Passo a passo no guia de deploy.</p></div>
-    <span class="pill"><span class="dot"></span>v2 · 3 abas · dados reais Windsor</span>
+      <p id="footerNote">Modo atual: <b style="color:var(--muted2)">dados embutidos</b> (snapshot 18 mai–16 jun). Para atualização diária/semanal, troque <code>CONFIG.mode</code> para <code>'live'</code> e aponte <code>CONFIG.endpoint</code> para sua função Vercel.</p></div>
+    <span class="pill"><span class="dot" id="footerDot"></span><span id="footerPill">v2 · 3 abas · dados reais Windsor</span></span>
   </div>
   <div class="closing">Dashboard bom não mostra tudo. <span>Mostra o que importa.</span></div>
   <div class="tiny">LNR · Marketing, Dados e IA — Painel de performance Instagram</div>
@@ -388,21 +384,145 @@ const DATA = {
   ]
 };
 
-const INSIGHTS = [
-  {ic:"📡",t:"Alcance sem conversa",f:`Seu Reel de maior alcance (08/06) chegou a <span class="hot">105 contas</span>, mas gerou só <b>3 interações</b> — taxa de 2,9%. O algoritmo entregou; o conteúdo não prendeu.`,a:`Abra os <b>3 primeiros segundos</b> com a dor do público ("Você posta todo dia e ninguém vê?"), não com a sua tese. Gancho fraco = alcance que não vira conversa.`},
-  {ic:"🎯",t:"Você já achou a fórmula",f:`15/06: <span class="hot">45 de alcance, 6 interações (13%) e os 2 únicos comentários</span> de um Reel no mês. Por quê? Mostrava cliente real (o ferrador) + CTA de comentário.`,a:`Transforme isso em <b>template fixo</b>: caso real de cliente → prova na tela → CTA "comenta X". Repita toda semana com Rubens e Mustad.`},
-  {ic:"🔖",t:"Salvamentos são ouro — e estão zerados",f:`Apenas <span class="hot">4 salvamentos</span> em 30 dias. Salvar é o sinal que o algoritmo de 2026 <b>mais valoriza</b> — significa "conteúdo de referência".`,a:`Crie posts <b>salváveis</b>: listas, passo a passo, "guarde pra não esquecer". Um carrossel "5 erros que matam seu Instagram" é feito pra ser salvo.`},
-  {ic:"💬",t:"Comentário move a entrega",f:`<span class="hot">3 comentários</span> no mês inteiro, e 2 vieram do único post com CTA claro. Comentário nos primeiros minutos empurra o Reel pra mais gente.`,a:`<b>Toda legenda termina com pergunta ou CTA de comentário.</b> "Qual desses erros você já cometeu?" vale mais que "saiba mais".`},
-  {ic:"📅",t:"O buraco é constância",f:`Foram <span class="hot">6 dias zerados</span> (sem alcance nenhum). Seu problema não é o conteúdo não funcionar — é não ter conteúdo no ar com frequência.`,a:`Calendário fixo de <b>3 Reels + 2 carrosséis por semana</b>. Grave em bloco (4 Reels num dia) pra não depender de inspiração diária.`}
-];
-const METAS = [
-  {m:"Seguidores",now:"5",goal:"50",why:"Reels de descoberta trazem não-seguidores"},
-  {m:"Alcance médio por Reel",now:"54",goal:"150",why:"Gancho melhor nos 3s + frequência"},
-  {m:"Salvamentos / mês",now:"4",goal:"20",why:"Conteúdo de referência (listas, guias)"},
-  {m:"Comentários / mês",now:"3",goal:"15",why:"CTA de comentário em toda legenda"},
-  {m:"Reels / semana",now:"~0,7",goal:"3",why:"É o único motor de descoberta hoje"},
-  {m:"Dias ativos / mês",now:"24",goal:"30",why:"Acabar com os dias zerados"}
-];
+// ---- lógica de diagnóstico dinâmico ----------------------------------------
+
+function computeXray(D) {
+  const { posts, totals, daily, profile, format } = D;
+  const firstDay = daily[0]?.d || '';
+  const lastDay  = daily[daily.length - 1]?.d || '';
+  const year = new Date().getFullYear();
+
+  const reels = posts.filter(p => p.type === 'Reel');
+  const carr  = posts.filter(p => p.type !== 'Reel');
+  const zeroDays = daily.filter(d => d.reach === 0).length;
+
+  const topReach = [...posts].sort((a,b) => b.reach - a.reach)[0];
+  const topEff   = [...posts]
+    .filter(p => p.reach > 0)
+    .sort((a,b) => (b.eng / b.reach) - (a.eng / a.reach))[0];
+  const ratio = format.carrReach > 0 ? (format.reelReach / format.carrReach).toFixed(1).replace('.',',') : '—';
+
+  // -- Situação
+  const isNew = profile.followers < 100;
+  const discovery = topReach
+    ? `um ${topReach.type} alcançou <b>${topReach.reach} contas</b> — a maioria não te seguia.`
+    : 'o motor de descoberta está sendo testado.';
+  const situacao = `Conta ${isNew ? 'nova' : 'em crescimento'}: <b>${profile.followers} seguidores</b>, ${profile.mediaCount} posts publicados. O motor de descoberta <b>já funciona</b> — ${discovery} A base é pequena, mas o conteúdo tem tração.`;
+
+  // -- Problema principal
+  let problema;
+  if (zeroDays >= 4) {
+    problema = `<b>Constância e conversa.</b> Foram <b>${zeroDays} dias zerados</b> no período, e o alcance quase não vira interação: só <b>${totals.comments} comentários</b> e <b>${totals.saves} salvamentos</b> — justamente os sinais que o algoritmo mais premia em 2026.`;
+  } else if (totals.comments < 10 || totals.saves < 10) {
+    problema = `<b>Converter alcance em conversa.</b> O alcance existe, mas as interações profundas ficam baixas: <b>${totals.comments} comentários</b> e <b>${totals.saves} salvamentos</b> no período. São exatamente os sinais que o algoritmo de 2026 mais premia.`;
+  } else {
+    problema = `<b>Escalar o que já funciona.</b> Os números mostram direção certa — agora é aumentar a frequência e aplicar a fórmula dos posts mais eficientes para todos os Reels.`;
+  }
+
+  // -- Oportunidade
+  let oportunidade;
+  if (topEff && topEff.eng > 0) {
+    const effRate = (topEff.eng / topEff.reach * 100).toFixed(0);
+    const short = topEff.title.length > 50 ? topEff.title.slice(0, 47) + '…' : topEff.title;
+    oportunidade = `Repetir a <b>fórmula de ${topEff.date}</b>: <i>"${short}"</i> — ${effRate}% de taxa de interação, a mais alta do período. É exatamente o que o mercado recompensa num nicho cheio de teoria.`;
+  } else {
+    oportunidade = `Identificar e replicar o formato que gera mais interações — o painel já aponta quais posts têm a melhor relação alcance × conversa.`;
+  }
+
+  // -- Ação da semana
+  const reelsPerWeek = daily.length > 0 ? (reels.length / (daily.length / 7)) : 0;
+  let doWeek;
+  if (reelsPerWeek < 2) {
+    doWeek = `<b>3 Reels</b> esta semana — Reels alcançam ${ratio}x mais que carrosséis. Priorize demonstrações reais de clientes com gancho de dor nos 3 primeiros segundos e CTA de comentário. Veja roteiros prontos na aba <b>O que replicar</b>.`;
+  } else if (totals.saves < 10) {
+    doWeek = `Publicar <b>1 carrossel salvável</b> (lista, passo a passo ou guia) + <b>2 Reels</b> com CTA de comentário. Salvamentos são o sinal mais valorizado pelo algoritmo agora — e você tem apenas ${totals.saves} no período.`;
+  } else {
+    doWeek = `Manter cadência de <b>3 Reels + 1 carrossel</b> e testar séries conectadas (Parte 1, 2, 3…) para aumentar visitas ao perfil. Você está no caminho certo — é hora de escalar.`;
+  }
+
+  return { dateRange: `${firstDay}–${lastDay} ${year}`, situacao, problema, oportunidade, doWeek };
+}
+
+function computeInsights(D) {
+  const { posts, totals, daily } = D;
+  const zeroDays = daily.filter(d => d.reach === 0).length;
+  const topReach = [...posts].sort((a,b) => b.reach - a.reach)[0];
+  const topEff   = [...posts].filter(p => p.reach > 0 && p.eng > 0).sort((a,b) => (b.eng/b.reach) - (a.eng/a.reach))[0];
+  const insights = [];
+
+  // Alcance sem conversa (só mostra se o melhor post tem taxa baixa)
+  if (topReach && topReach.reach > 0) {
+    const rate = (topReach.eng / topReach.reach * 100).toFixed(1);
+    const label = parseFloat(rate) < 8 ? 'Alcance sem conversa' : 'Alcance com conversa moderada';
+    const action = parseFloat(rate) < 8
+      ? `Abra os <b>3 primeiros segundos</b> com a dor do público ("Você posta todo dia e ninguém vê?"), não com a sua tese. Gancho fraco = alcance que não vira conversa.`
+      : `O gancho está funcionando. Agora teste CTAs diferentes ("comenta X", "salva pra lembrar") para elevar ainda mais a taxa.`;
+    insights.push({
+      ic: '📡', t: label,
+      f: `Seu post de maior alcance (${topReach.date}) chegou a <span class="hot">${topReach.reach} contas</span>, mas gerou <b>${topReach.eng} interações</b> — taxa de ${rate}%. ${parseFloat(rate) < 8 ? 'O algoritmo entregou; o conteúdo não prendeu.' : 'Boa relação — você está convertendo.'}`,
+      a: action
+    });
+  }
+
+  // Fórmula encontrada (quando top eficiência é diferente do top alcance)
+  if (topEff && topReach && topEff.date !== topReach.date) {
+    const effRate = (topEff.eng / topEff.reach * 100).toFixed(0);
+    insights.push({
+      ic: '🎯', t: 'Você já achou a fórmula',
+      f: `${topEff.date}: <span class="hot">${topEff.reach} de alcance, ${topEff.eng} interações (${effRate}%)</span>. Por quê? ${topEff.type} de resultado concreto com CTA de comentário — é isso que o algoritmo amplifica.`,
+      a: `Transforme isso em <b>template fixo</b>: caso real de cliente → prova em tela → CTA "comenta X". Repita toda semana.`
+    });
+  }
+
+  // Salvamentos
+  const savesTarget = 20;
+  insights.push({
+    ic: '🔖', t: totals.saves < savesTarget ? 'Salvamentos são ouro — e estão abaixo do potencial' : 'Salvamentos em crescimento',
+    f: `<span class="hot">${totals.saves} salvamentos</span> no período. Salvar é o sinal que o algoritmo de 2026 <b>mais valoriza</b> — significa "conteúdo de referência" para o público.`,
+    a: `Crie posts <b>salváveis</b>: listas, passo a passo, "guarde pra não esquecer". Um carrossel "5 erros que matam o seu Instagram" é feito pra ser salvo.`
+  });
+
+  // Comentários
+  insights.push({
+    ic: '💬', t: totals.comments < 10 ? 'Comentário move a entrega' : 'Comentários em crescimento',
+    f: `<span class="hot">${totals.comments} comentários</span> no período. Comentários nos primeiros minutos empurram o conteúdo pra mais gente e amplificam o alcance orgânico.`,
+    a: `<b>Toda legenda termina com pergunta ou CTA.</b> "Qual desses erros você já cometeu?" vale muito mais que "saiba mais" ou "link na bio".`
+  });
+
+  // Constância
+  if (zeroDays > 0) {
+    insights.push({
+      ic: '📅', t: zeroDays >= 4 ? 'O buraco é constância' : 'Consistência quase lá',
+      f: `Foram <span class="hot">${zeroDays} dias zerados</span> (sem alcance nenhum) no período. ${zeroDays >= 4 ? 'Seu problema não é o conteúdo não funcionar — é não ter conteúdo no ar com frequência suficiente.' : 'Você está perto da consistência ideal.'}`,
+      a: `Calendário fixo de <b>3 Reels + 2 carrosséis por semana</b>. Grave em bloco (4 Reels num dia) pra não depender de inspiração diária.`
+    });
+  }
+
+  return insights;
+}
+
+function computeMetas(D) {
+  const { totals, profile, format, posts, daily } = D;
+  const weeks = Math.max(daily.length / 7, 1);
+  const reelCount = posts.filter(p => p.type === 'Reel').length;
+  const reelsPerWeekNow = (reelCount / weeks).toFixed(1).replace('.',',');
+  const activeDaysNow = `${totals.activeDays}/${totals.totalDays}`;
+
+  const goalFollowers = Math.max(Math.round(profile.followers * 10 / 5) * 5, 50);
+  const goalReach = Math.max(Math.round(format.reelReach * 2.5 / 10) * 10, 100);
+  const goalSaves = Math.max(totals.saves * 5, 20);
+  const goalComments = Math.max(totals.comments * 5, 15);
+
+  return [
+    { m:'Seguidores', now:String(profile.followers), goal:String(goalFollowers), why:'Reels de descoberta trazem não-seguidores' },
+    { m:'Alcance médio por Reel', now:String(Math.round(format.reelReach||0)), goal:String(goalReach), why:'Gancho melhor nos 3s + frequência constante' },
+    { m:'Salvamentos / período', now:String(totals.saves), goal:String(goalSaves), why:'Conteúdo de referência (listas, guias, checklists)' },
+    { m:'Comentários / período', now:String(totals.comments), goal:String(goalComments), why:'CTA de comentário em toda legenda' },
+    { m:'Reels / semana', now:'~'+reelsPerWeekNow, goal:'3', why:'É o único motor de descoberta hoje' },
+    { m:'Dias ativos / período', now:activeDaysNow, goal:String(totals.totalDays), why:'Eliminar completamente os dias zerados' }
+  ];
+}
+
 const ALGO = [
   {e:"⏱",a:"Retenção (watch time)",b:"Gancho nos 3 primeiros segundos",p:`O algoritmo decide a entrega pela retenção inicial. Abra com a dor, não com a marca.`},
   {e:"🔁",a:"Replays",b:"Reels curtos (<15s) com loop",p:`Vídeos curtos que emendam o fim no começo geram replays — sinal forte de qualidade.`},
@@ -447,10 +567,14 @@ const FORMATS = [
 async function getData(){
   if(CONFIG.mode==='live'&&CONFIG.endpoint){
     try{const r=await fetch(CONFIG.endpoint,{cache:'no-store'});if(!r.ok)throw 0;
-      const j=await r.json();setStatus(true,'Atualizado agora · '+new Date().toLocaleString('pt-BR'));return j;}
-    catch(e){setStatus(false,'Falha ao atualizar — exibindo snapshot');return DATA;}
+      const j=await r.json();
+      const last=j.daily&&j.daily.length?j.daily[j.daily.length-1].d:'';
+      setStatus(true,'Ao vivo · atualizado '+new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})+(last?' · até '+last:''));
+      return j;}
+    catch(e){setStatus(false,'API offline — exibindo snapshot');return DATA;}
   }
-  setStatus(false,'Dados de 18 mai–16 jun · snapshot');return DATA;
+  const d=DATA;const first=d.daily[0]?.d||'',last=d.daily[d.daily.length-1]?.d||'';
+  setStatus(false,`Snapshot ${first}–${last}`);return d;
 }
 function setStatus(live,txt){document.getElementById('statusTxt').textContent=txt;
   document.getElementById('statusDot').className=live?'dot live':'dot';}
@@ -549,10 +673,21 @@ function renderContent(D){
         <div class="m hideS"><div class="v">${fmt(p.saves)}</div><div class="l">Salvos</div></div>
         <div class="m"><div class="v">${fmt(p.comments)}</div><div class="l">Coment.</div></div></div></div>`;}).join('');
 }
-function renderTab2(){
-  $('#insights').innerHTML=INSIGHTS.map(i=>`<div class="ins"><div class="ico">${i.ic}</div><div>
+function renderXray(D) {
+  const x = computeXray(D);
+  document.getElementById('xrayEyebrow').textContent = `Raio-x de 30 segundos · @lnrcomunicacao · ${x.dateRange}`;
+  document.getElementById('diagGrid').innerHTML = `
+    <div class="diag sit"><div class="lab"><span class="ic">📍</span> Situação</div><p>${x.situacao}</p></div>
+    <div class="diag prob"><div class="lab"><span class="ic">⚠️</span> Problema nº 1</div><p>${x.problema}</p></div>
+    <div class="diag opp"><div class="lab"><span class="ic">🚀</span> Oportunidade nº 1</div><p>${x.oportunidade}</p></div>`;
+  document.getElementById('doweek').innerHTML = `<span class="badge-do">Faça esta semana</span><p>${x.doWeek}</p>`;
+}
+function renderTab2(D){
+  const insights = computeInsights(D);
+  const metas = computeMetas(D);
+  $('#insights').innerHTML=insights.map(i=>`<div class="ins"><div class="ico">${i.ic}</div><div>
     <h3>${i.t}</h3><p class="finding">${i.f}</p><div class="action"><span class="tag">Ação</span><div>${i.a}</div></div></div></div>`).join('');
-  $('#metasBody').innerHTML=METAS.map(m=>`<tr><td>${m.m}</td><td class="now">${m.now}</td><td class="arrow">→</td><td class="goal">${m.goal}</td><td class="why">${m.why}</td></tr>`).join('');
+  $('#metasBody').innerHTML=metas.map(m=>`<tr><td>${m.m}</td><td class="now">${m.now}</td><td class="arrow">→</td><td class="goal">${m.goal}</td><td class="why">${m.why}</td></tr>`).join('');
   $('#algoGrid').innerHTML=ALGO.map(a=>`<div class="algo"><div class="top"><span class="e">${a.e}</span><b>${a.a}<span class="arrow">→</span>${a.b}</b></div><p>${a.p}</p></div>`).join('');
 }
 let objFilterVal='all';
@@ -575,7 +710,15 @@ function wire(D){
 }
 (async function(){
   const D=await getData();
-  renderKPIs(D);renderFormat(D);renderQuad(D);renderChart(D);renderContent(D);renderTab2();renderFormats();wire(D);
+  renderXray(D);renderKPIs(D);renderFormat(D);renderQuad(D);renderChart(D);renderContent(D);renderTab2(D);renderFormats();wire(D);
+  // atualizar footer com range real
+  const firstDay=D.daily[0]?.d||'',lastDay=D.daily[D.daily.length-1]?.d||'';
+  if(firstDay&&lastDay){
+    const isLive=CONFIG.mode==='live';
+    document.getElementById('footerNote').innerHTML=`Modo atual: <b style="color:var(--muted2)">${isLive?'ao vivo (Windsor API)':'snapshot'}</b> · período ${firstDay}–${lastDay}. Os insights, metas e raio-x são calculados automaticamente a cada abertura.`;
+    if(isLive){document.getElementById('footerDot').className='dot live';}
+    document.getElementById('footerPill').textContent=`v3 · 3 abas · dados dinâmicos`;
+  }
   window.addEventListener('resize',()=>{renderChart(D);renderQuad(D);});
 })();
 </script>
