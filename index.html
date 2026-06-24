@@ -262,19 +262,19 @@
     <div class="sec-head"><span class="n">02</span><h2>Eficiência — alcance × conversa</h2>
       <p>Não basta alcançar; tem que gerar interação. Cada bolha é um post. A zona ideal é o canto superior direito.</p></div>
     <div class="chartbox"><svg id="quad" viewBox="0 0 900 330" preserveAspectRatio="none"></svg><div class="tip" id="tipQ"></div></div>
-    <p class="muted" style="font-size:12.5px;margin-top:14px">Leitura: o Reel de <b style="color:var(--brand)">08/06</b> foi longe (105) mas converteu pouco (3 interações). O de <b style="color:var(--brand)">15/06</b> alcançou menos, mas é o mais <b style="color:var(--ok)">eficiente</b> — alcance + conversa juntos. Os carrosséis engajam bem em proporção, mas presos a um alcance minúsculo.</p>
+    <p class="muted" id="quadNote" style="font-size:12.5px;margin-top:14px"></p>
   </section>
 
   <section>
     <div class="sec-head"><span class="n">03</span><h2>O que traz gente nova</h2><p>Alcance médio por formato.</p></div>
     <div class="two">
       <div class="panel" style="display:flex;flex-direction:column;justify-content:center">
-        <div class="bigstat" id="ratioStat">7,3<span class="x">x</span></div>
-        <div class="bigstat-cap">Um Reel da LNR alcança <b style="color:var(--ink)">7,3x mais contas</b> que um carrossel. O carrossel mal escapa da base de seguidores; o Reel rompe a bolha.</div></div>
+        <div class="bigstat" id="ratioStat"></div>
+        <div class="bigstat-cap" id="ratioCap">Calculando…</div></div>
       <div class="panel barcmp">
-        <div><div class="top"><b>Reels <small>3 posts</small></b><span class="v" style="color:var(--brand)" id="reelAvg">54</span></div>
+        <div><div class="top"><b>Reels <small id="reelCountLabel"></small></b><span class="v" style="color:var(--brand)" id="reelAvg"></span></div>
           <div class="track"><div class="fill reel" id="reelBar" style="width:0%"></div></div></div>
-        <div><div class="top"><b>Carrosséis <small>9 posts</small></b><span class="v muted" id="carrAvg">7</span></div>
+        <div><div class="top"><b>Carrosséis <small id="carrCountLabel"></small></b><span class="v muted" id="carrAvg"></span></div>
           <div class="track"><div class="fill carr" id="carrBar" style="width:0%"></div></div></div>
         <div class="muted" style="font-size:11.5px;border-top:1px solid var(--line);padding-top:12px">Confere com o mercado: Semrush (820 mil posts) aponta Reels com <b style="color:var(--brand)">+59% de engajamento</b> vs. carrossel.</div></div>
     </div>
@@ -289,11 +289,17 @@
         <button data-period="day" class="on">Diário</button><button data-period="week">Semanal</button></div>
     </div>
     <div class="chartbox"><svg id="chart" viewBox="0 0 900 290" preserveAspectRatio="none"></svg><div class="tip" id="tip"></div></div>
-    <p class="muted" style="font-size:12px;margin-top:14px">6 dos 30 dias ficaram zerados. Os picos de <b style="color:var(--accent)">08/06</b> e <b style="color:var(--accent)">15/06</b> foram Reels.</p>
+    <p class="muted" id="chartNote" style="font-size:12px;margin-top:14px"></p>
   </section>
 
   <section>
-    <div class="sec-head"><span class="n">05</span><h2>Ranking de conteúdo</h2><p>Cada post por alcance, com a etiqueta de eficiência. Clique no título para abrir no Instagram.</p></div>
+    <div class="sec-head"><span class="n">05</span><h2>Padrão por dia da semana</h2><p>Alcance médio por dia — para saber quando publicar e maximizar a distribuição.</p></div>
+    <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:10px;align-items:end;height:140px" id="dowBars"></div>
+    <p class="muted" id="dowNote" style="font-size:12.5px;margin-top:12px"></p>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="n">06</span><h2>Ranking de conteúdo</h2><p>Cada post por alcance, com a etiqueta de eficiência. Clique no título para abrir no Instagram.</p></div>
     <div class="filterbar segset" id="fmtFilter" style="display:inline-flex">
       <button data-f="all" class="on">Todos</button><button data-f="Reel">Só Reels</button><button data-f="Carrossel">Só Carrosséis</button></div>
     <div class="clist" id="clist"></div>
@@ -601,15 +607,83 @@ function renderKPIs(D){
   $('#kpis').innerHTML=cards.map(c=>`<div class="kpi ${c.key?'key':''}"><div class="lab">${c.lab}</div><div class="val">${c.val}</div><div class="sub">${c.sub}</div></div>`).join('');
 }
 function renderFormat(D){
-  const f=D.format,max=Math.max(f.reelReach,f.carrReach);
-  $('#reelAvg').textContent=Math.round(f.reelReach);$('#carrAvg').textContent=Math.round(f.carrReach);
-  $('#ratioStat').innerHTML=(f.reelReach/f.carrReach).toFixed(1).replace('.',',')+'<span class="x">x</span>';
+  const f=D.format,max=Math.max(f.reelReach,f.carrReach,1);
+  const ratio=f.carrReach>0?(f.reelReach/f.carrReach).toFixed(1).replace('.',','):'—';
+  $('#reelAvg').textContent=Math.round(f.reelReach);
+  $('#carrAvg').textContent=Math.round(f.carrReach);
+  $('#ratioStat').innerHTML=ratio+'<span class="x">x</span>';
+  document.getElementById('ratioCap').innerHTML=`Um Reel da LNR alcança <b style="color:var(--ink)">${ratio}x mais contas</b> que um carrossel. ${f.carrReach<20?'O carrossel mal escapa da base de seguidores; o Reel rompe a bolha.':'Ambos alcançam, mas Reels têm vantagem clara de distribuição orgânica.'}`;
+  document.getElementById('reelCountLabel').textContent=`${f.reels} post${f.reels!==1?'s':''}`;
+  document.getElementById('carrCountLabel').textContent=`${f.carrossels} post${f.carrossels!==1?'s':''}`;
   setTimeout(()=>{$('#reelBar').style.width=(f.reelReach/max*100)+'%';$('#carrBar').style.width=(f.carrReach/max*100)+'%';},150);
+}
+
+function renderNotes(D){
+  // Nota do quadrante de eficiência
+  const topReach=[...D.posts].sort((a,b)=>b.reach-a.reach)[0];
+  const topEff=[...D.posts].filter(p=>p.reach>0).sort((a,b)=>(b.eng/b.reach)-(a.eng/a.reach))[0];
+  let qn='';
+  if(topReach&&topEff){
+    if(topReach.date===topEff.date){
+      qn=`Leitura: o post de <b style="color:var(--brand)">${topReach.date}</b> foi ao mesmo tempo o de maior alcance (${topReach.reach} contas) e o mais eficiente (${topReach.eng} interações). Replique esse formato.`;
+    } else {
+      const effRate=(topEff.eng/topEff.reach*100).toFixed(0);
+      qn=`Leitura: o post de <b style="color:var(--brand)">${topReach.date}</b> alcançou mais (${topReach.reach} contas) mas converteu menos (${topReach.eng} interações). O de <b style="color:var(--brand)">${topEff.date}</b> foi o mais <b style="color:var(--ok)">eficiente</b> — ${effRate}% de taxa de interação. ${D.format.carrossels>0?'Os carrosséis engajam em proporção, mas com alcance menor.':''}`;
+    }
+  }
+  const qel=document.getElementById('quadNote');if(qel)qel.innerHTML=qn;
+
+  // Nota do gráfico de evolução
+  const zeroDays=D.daily.filter(d=>d.reach===0).length;
+  const sorted=[...D.daily].sort((a,b)=>b.reach-a.reach).slice(0,2).filter(d=>d.reach>0);
+  const reelDates=new Set(D.posts.filter(p=>p.type==='Reel').map(p=>p.date));
+  const peakParts=sorted.map(d=>`<b style="color:var(--accent)">${d.d}</b>${reelDates.has(d.d)?' (Reel)':''}`);
+  let cn='';
+  if(zeroDays>0)cn+=`${zeroDays} dos ${D.daily.length} dias ficaram zerados (sem alcance). `;
+  if(peakParts.length)cn+=`Pico${peakParts.length>1?'s':''}: ${peakParts.join(' e ')}.`;
+  const cel=document.getElementById('chartNote');if(cel)cel.innerHTML=cn;
+}
+
+function renderDayOfWeek(D){
+  const dayNames=['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
+  const byDay=Array(7).fill(null).map((_,i)=>({name:dayNames[i],reach:0,count:0}));
+  const nowYear=new Date().getFullYear();
+  D.daily.forEach(d=>{
+    const [day,month]=d.d.split('/').map(Number);
+    // testa o ano atual e o anterior para pegar o mais próximo do passado
+    let dt=new Date(nowYear,month-1,day);
+    if(dt>new Date())dt=new Date(nowYear-1,month-1,day);
+    byDay[dt.getDay()].reach+=d.reach;
+    byDay[dt.getDay()].count++;
+  });
+  const avgs=byDay.map(b=>({name:b.name,avg:b.count>0?b.reach/b.count:0,count:b.count}));
+  const maxAvg=Math.max(...avgs.map(a=>a.avg),1);
+  const best=avgs.reduce((a,b)=>a.avg>b.avg?a:b);
+  const el=document.getElementById('dowBars');
+  if(!el)return;
+  el.innerHTML=avgs.map(d=>{
+    const pct=Math.round(d.avg/maxAvg*100);
+    const isBest=d.name===best.name&&d.avg>0;
+    return `<div style="display:flex;flex-direction:column;align-items:center;gap:5px;height:100%;justify-content:flex-end">
+      <span style="font-size:10px;color:${isBest?'var(--brand)':'var(--muted)'};font-family:'Poppins';font-weight:700">${d.avg>0?Math.round(d.avg):'—'}</span>
+      <div style="width:100%;border-radius:5px 5px 0 0;background:${isBest?'var(--brand)':'rgba(70,184,209,.28)'};height:${pct}%;min-height:${d.avg>0?4:0}px;transition:height .8s cubic-bezier(.2,.7,.3,1)"></div>
+      <span style="font-size:11.5px;color:${isBest?'var(--brand)':'var(--muted)'};font-weight:${isBest?700:500};font-family:'Poppins'">${d.name}</span>
+    </div>`;
+  }).join('');
+  const dowNote=document.getElementById('dowNote');
+  if(dowNote&&best.avg>0){
+    const tip=best.name==='Sex'||best.name==='Dom'||best.name==='Sáb'?'tarde (14–18h)':'noite (19–21h)';
+    dowNote.innerHTML=`<b style="color:var(--brand)">${best.name}</b> é o dia com maior alcance médio (${Math.round(best.avg)} contas). Priorize publicar Reels às <b style="color:var(--ink)">${tip}</b> para aproveitar o pico de audiência nesse dia.`;
+  }
 }
 function renderQuad(D){
   const svg=$('#quad');svg.innerHTML='';
   const W=900,H=330,padL=46,padR=24,padT=24,padB=42,pw=W-padL-padR,ph=H-padT-padB;
   const maxX=Math.max(...D.posts.map(p=>p.reach))*1.08,maxY=Math.max(...D.posts.map(p=>p.eng))*1.2||1;
+  // top 2 posts por alcance + top eficiência para anotar
+  const sortedR=[...D.posts].sort((a,b)=>b.reach-a.reach);
+  const sortedE=[...D.posts].filter(p=>p.reach>0).sort((a,b)=>(b.eng/b.reach)-(a.eng/a.reach));
+  const topDates=new Set([sortedR[0]?.date,sortedE[0]?.date].filter(Boolean));
   for(let i=0;i<=4;i++){const y=padT+ph-(ph*i/4),val=Math.round(maxY/4*i);
     const ln=document.createElementNS(SVGNS,'line');ln.setAttribute('x1',padL);ln.setAttribute('x2',W-padR);ln.setAttribute('y1',y);ln.setAttribute('y2',y);ln.setAttribute('class','gridline');svg.appendChild(ln);
     const tx=document.createElementNS(SVGNS,'text');tx.setAttribute('x',padL-8);tx.setAttribute('y',y+3);tx.setAttribute('text-anchor','end');tx.setAttribute('class','axislab');tx.textContent=val;svg.appendChild(tx);}
@@ -628,7 +702,7 @@ function renderQuad(D){
       tip.innerHTML=`<b>${p.date}</b> · ${p.type}<div class="d">${fmt(p.reach)} alcance · ${p.eng} interações</div>`;
       tip.style.left=(ev.clientX-box.left)+'px';tip.style.top=(ev.clientY-box.top)+'px';tip.style.opacity='1';});
     c.addEventListener('mouseleave',()=>$('#tipQ').style.opacity='0');svg.appendChild(c);
-    if(p.date==='15/06'||p.date==='08/06'){const a=document.createElementNS(SVGNS,'text');a.setAttribute('x',x);a.setAttribute('y',y-14);a.setAttribute('text-anchor','middle');a.setAttribute('class','anno');a.textContent=p.date;svg.appendChild(a);}
+    if(topDates.has(p.date)){const a=document.createElementNS(SVGNS,'text');a.setAttribute('x',x);a.setAttribute('y',y-14);a.setAttribute('text-anchor','middle');a.setAttribute('class','anno');a.textContent=p.date;svg.appendChild(a);}
   });
 }
 let chartState={metric:'reach',period:'day'};
@@ -710,7 +784,7 @@ function wire(D){
 }
 (async function(){
   const D=await getData();
-  renderXray(D);renderKPIs(D);renderFormat(D);renderQuad(D);renderChart(D);renderContent(D);renderTab2(D);renderFormats();wire(D);
+  renderXray(D);renderKPIs(D);renderFormat(D);renderQuad(D);renderChart(D);renderContent(D);renderTab2(D);renderFormats();renderNotes(D);renderDayOfWeek(D);wire(D);
   // atualizar footer com range real
   const firstDay=D.daily[0]?.d||'',lastDay=D.daily[D.daily.length-1]?.d||'';
   if(firstDay&&lastDay){
