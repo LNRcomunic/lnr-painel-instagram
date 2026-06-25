@@ -354,14 +354,10 @@
 const CONFIG = { mode:'live', endpoint:'/api/windsor' };
 
 const DATA = {
-  profile:{followers:5,follows:12,mediaCount:13},
-  totals:{reach:254,views:536,accountsEngaged:26,interactions:48,likes:40,comments:3,saves:4,shares:0,activeDays:24,totalDays:30},
-  format:{reelReach:53.7,carrReach:7.3,reels:3,carrossels:9},
+  profile:{followers:23,follows:15,mediaCount:18},
+  totals:{reach:2891,views:3997,accountsEngaged:66,interactions:246,likes:116,comments:30,saves:11,shares:0,activeDays:27,totalDays:30},
+  format:{reelReach:107.4,carrReach:10.8,reels:7,carrossels:11},
   daily:[
-    {d:"18/05",reach:0,views:0,interactions:0},{d:"19/05",reach:0,views:0,interactions:0},
-    {d:"20/05",reach:1,views:12,interactions:0},{d:"21/05",reach:6,views:13,interactions:3},
-    {d:"22/05",reach:1,views:1,interactions:0},{d:"23/05",reach:3,views:12,interactions:1},
-    {d:"24/05",reach:2,views:8,interactions:0},{d:"25/05",reach:0,views:0,interactions:0},
     {d:"26/05",reach:0,views:0,interactions:0},{d:"27/05",reach:6,views:18,interactions:3},
     {d:"28/05",reach:1,views:2,interactions:0},{d:"29/05",reach:2,views:14,interactions:0},
     {d:"30/05",reach:1,views:2,interactions:0},{d:"31/05",reach:10,views:38,interactions:5},
@@ -372,21 +368,25 @@ const DATA = {
     {d:"09/06",reach:2,views:12,interactions:3},{d:"10/06",reach:2,views:8,interactions:3},
     {d:"11/06",reach:2,views:9,interactions:1},{d:"12/06",reach:11,views:25,interactions:3},
     {d:"13/06",reach:29,views:36,interactions:0},{d:"14/06",reach:6,views:6,interactions:0},
-    {d:"15/06",reach:43,views:87,interactions:11},{d:"16/06",reach:3,views:4,interactions:0}
+    {d:"15/06",reach:43,views:87,interactions:11},{d:"16/06",reach:3,views:4,interactions:0},
+    {d:"17/06",reach:18,views:34,interactions:8},{d:"18/06",reach:4,views:4,interactions:0},
+    {d:"19/06",reach:5,views:51,interactions:13},{d:"20/06",reach:465,views:523,interactions:7},
+    {d:"21/06",reach:277,views:308,interactions:0},{d:"22/06",reach:268,views:361,interactions:10},
+    {d:"23/06",reach:577,views:738,interactions:67},{d:"24/06",reach:1036,views:1488,interactions:97}
   ],
   posts:[
-    {date:"08/06",type:"Reel",title:"Postar todo dia e não ver retorno tem nome: falta de estratégia",reach:105,views:115,eng:3,saves:1,comments:0,url:"https://www.instagram.com/reel/DZUrZ_Fx1x7/"},
-    {date:"15/06",type:"Reel",title:"Esse app faz o Instagram inteiro de um cliente meu",reach:45,views:56,eng:6,saves:0,comments:2,url:"https://www.instagram.com/reel/DZm5ocVxbJa/"},
-    {date:"31/05",type:"Carrossel",title:"Prazer, somos a LNR",reach:16,views:41,eng:5,saves:0,comments:0,url:"https://www.instagram.com/p/DZAIcwYkfDu/"},
-    {date:"21/05",type:"Carrossel",title:"Marketing sem dados vira achismo",reach:14,views:26,eng:3,saves:0,comments:0,url:"https://www.instagram.com/p/DYnArJ-EYfS/"},
-    {date:"23/05",type:"Carrossel",title:"IA não substitui estratégia",reach:11,views:19,eng:3,saves:0,comments:0,url:"https://www.instagram.com/p/DYr00qcEQoZ/"},
-    {date:"11/06",type:"Reel",title:"O erro que faz seu conteúdo ser invisível",reach:11,views:20,eng:3,saves:0,comments:0,url:"https://www.instagram.com/reel/DZcYbh5ioJ7/"},
-    {date:"27/05",type:"Carrossel",title:"Dashboard bom não é só gráfico bonito",reach:10,views:28,eng:3,saves:0,comments:0,url:"https://www.instagram.com/p/DY2bqtxEeIv/"},
-    {date:"03/06",type:"Carrossel",title:"Sem estratégia, só esforço",reach:6,views:31,eng:2,saves:0,comments:0,url:"https://www.instagram.com/p/DZH_nDJkSlR/"},
-    {date:"05/06",type:"Carrossel",title:"Um prompt bem estruturado vira campanha",reach:3,views:23,eng:3,saves:1,comments:0,url:"https://www.instagram.com/p/DZNPJp1EanZ/"},
-    {date:"06/06",type:"Carrossel",title:"Você não precisa programar pra automatizar",reach:2,views:14,eng:2,saves:0,comments:0,url:"https://www.instagram.com/p/DZPlEk_kRS4/"},
-    {date:"09/06",type:"Carrossel",title:"5 sinais de que seu marketing roda no achismo",reach:2,views:11,eng:3,saves:1,comments:0,url:"https://www.instagram.com/p/DZXh3bDkZzQ/"},
-    {date:"12/06",type:"Carrossel",title:"Apontar o erro é fácil — 4 passos pra sair do achismo",reach:2,views:20,eng:3,saves:0,comments:1,url:"https://www.instagram.com/p/DZfLcdaEVKG/"}
+    {date:"24/06",type:"Reel",title:"Eu tava postando carrossel todo dia achando que constância sozinha ia me fazer crescer",reach:400,views:548,eng:51,saves:1,comments:11,url:"https://www.instagram.com/reel/DZ-W-amRT3s/"},
+    {date:"23/06",type:"Reel",title:"Tudo passando por você não é controle — é gargalo",reach:124,views:198,eng:40,saves:1,comments:6,url:"https://www.instagram.com/reel/DZ7luJqRWNv/"},
+    {date:"08/06",type:"Reel",title:"Postar todo dia e não ver retorno tem nome: falta de estratégia",reach:110,views:123,eng:4,saves:1,comments:0,url:"https://www.instagram.com/reel/DZUrZ_Fx1x7/"},
+    {date:"15/06",type:"Reel",title:"Esse app faz o Instagram inteiro de um cliente meu",reach:54,views:72,eng:12,saves:1,comments:5,url:"https://www.instagram.com/reel/DZm5ocVxbJa/"},
+    {date:"22/06",type:"Reel",title:"Mas como eu faço um agente desse? — foi a pergunta da semana",reach:24,views:44,eng:6,saves:1,comments:0,url:"https://www.instagram.com/reel/DZ4zvAnxego/"},
+    {date:"17/06",type:"Reel",title:"Esse app não vai roubar o seu lugar — mas quem usa IA, vai",reach:21,views:32,eng:5,saves:0,comments:0,url:"https://www.instagram.com/reel/DZr47-kE-a1/"},
+    {date:"31/05",type:"Carrossel",title:"Prazer, somos a LNR",reach:19,views:47,eng:9,saves:0,comments:0,url:"https://www.instagram.com/p/DZAIcwYkfDu/"},
+    {date:"11/06",type:"Reel",title:"O erro que faz seu conteúdo ser invisível: você fala de você",reach:19,views:28,eng:5,saves:0,comments:0,url:"https://www.instagram.com/reel/DZcYbh5ioJ7/"},
+    {date:"21/05",type:"Carrossel",title:"Marketing sem dados vira achismo",reach:16,views:30,eng:4,saves:0,comments:0,url:"https://www.instagram.com/p/DYnArJ-EYfS/"},
+    {date:"20/06",type:"Carrossel",title:"Enquanto o feed posta tabela, tem empresário faturando com a Copa",reach:15,views:48,eng:11,saves:2,comments:2,url:"https://www.instagram.com/p/DZ0cnuuExKf/"},
+    {date:"19/06",type:"Carrossel",title:"Conta aí nos comentários: quantos desses 5 sinais são os seus?",reach:13,views:27,eng:7,saves:1,comments:2,url:"https://www.instagram.com/p/DZx33RViqiM/"},
+    {date:"23/05",type:"Carrossel",title:"IA não substitui estratégia",reach:13,views:24,eng:5,saves:0,comments:0,url:"https://www.instagram.com/p/DYr00qcEQoZ/"}
   ]
 };
 
